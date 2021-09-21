@@ -11,6 +11,19 @@ module Kanbanize
     include ActiveModel::Validations
     include ActiveModel::Attributes
 
+    def self.print(object)
+      case object
+      when Array
+        puts ('*' * 10).light_yellow
+        puts '#ID - #NAME'.green
+        object.each do |model|
+          puts "#{model.id} - #{model.name}".green
+        end
+
+        puts ('*' * 10).light_yellow
+      end
+    end
+
     # KANBANIZE_API_KEY_ENVIRONMENT_KEY_NAME = 'KANBANIZE_API_KEY'
     # KANBANIZE_API_HOSTNAME_ENVIRONMENT_KEY_NAME = 'KANBANIZE_API_HOSTNAME'
     # attr_reader :api_key, :api_host_name

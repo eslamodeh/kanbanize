@@ -3,8 +3,10 @@ require 'gli'
 require 'colorize'
 require 'rest-client'
 require 'json'
+require 'set'
 require 'active_model'
 require 'kanbanize/base'
+require 'kanbanize/config'
 require 'kanbanize/board'
 
 module Kanbanize
@@ -14,16 +16,16 @@ module Kanbanize
 
   program_desc 'todo'
 
+  command :init do |cmd|
+    cmd.action do
+      Kanbanize::Configurator.init
+    end
+  end
+
   command :boards do |sub_command|
     sub_command.command :list do |sub_command_2|
       sub_command_2.action do
-        puts ('*' * 10).blue
-        puts '#ID - #NAME'.green
-        Kanbanize::Board.all.each do |board|
-          puts "#{board.id} - #{board.name}".green
-        end
-
-        puts ('*' * 10).blue
+        Kanbanize::Base.print(Kanbanize::Board.all)
       end
     end
   end
