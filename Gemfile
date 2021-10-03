@@ -5,9 +5,9 @@ gemspec
 
 gem 'activemodel'
 gem 'colorize'
-gem 'gli'
 gem 'json'
 gem 'pry'
 gem 'rake', '~> 12.0'
 gem 'rest-client'
 gem 'rspec', '~> 3.0'
+gem 'thor'
